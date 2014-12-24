@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<style>
+	html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
+	</style>
+	<script src="http://code.jquery.com/jquery.min.js"></script>
+	<title>Nico~nico~ni~</title>
+</head>
+<body>
+	<video style="position:absolute;margin: 0px auto;height:520px" autoplay="autoplay" loop="loop" preload="auto" >
+		<source src="niconiconi.mp4" type="video/mp4">
+		請將您的瀏覽器更新至最新版，或使用其他瀏覽器
+	</video>
+	<script>
+	$("video").height(gWH().h)
+	if(gWH().h/9*16>gWH().w){
+		$("video").css("left",($(window).width()-Math.round(gWH().h/9*16)).toString()+"px");
+	}else if(gWH().h/9*16<gWH().w){
+		$("video").width(gWH().w);
+		$("video").css("top",($(window).height()-Math.round(gWH().w/16*9)).toString()+"px")
+	}else{
+		$("video").css("left","auto");
+	}
+	function gWH(){var b,c;"undefined"!=typeof window.innerWidth?(b=window.innerWidth,c=window.innerHeight):"undefined"!=typeof document.documentElement&&"undefined"!=typeof document.documentElement.clientWidth&&0!=document.documentElement.clientWidth?(b=document.documentElement.clientWidth,c=document.documentElement.clientHeight):(b=document.getElementsByTagName("body")[0].clientWidth,c=document.getElementsByTagName("body")[0].clientHeight);var a={};a.width=a.w=b;a.height=a.h=c;return a};
+	window.onresize = function(){
+		$("video").height(gWH().h)
+		if(gWH().h/9*16>gWH().w){
+			$("video").css("left",($(window).width()-Math.round(gWH().h/9*16)).toString()+"px");
+		}else if(gWH().h/9*16<gWH().w){
+			$("video").width(gWH().w);
+			$("video").css("top",($(window).height()-Math.round(gWH().w/16*9)).toString()+"px")
+		}else{
+			$("video").css("left","auto");
+		}
+	}
+	</script>
+</body>
+</html>
