@@ -4,8 +4,43 @@
 	<meta charset="UTF-8">
 	<style>
 	html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
+	#footer{opacity:0.6;font-size:250%;text-align:center;background-color:black;color:white;width:100%;position:fixed; bottom:0; height:7%;_position: absolute;_top:expression(documentElement.scrollTop+documentElement.clientHeight-this.clientHeight-4);}
+	#footer:hover{
+		/* Chrome, Safari, Opera */
+	    -webkit-animation-name: tc;
+	    -webkit-animation-duration: 2s;
+	    -webkit-animation-timing-function: linear;
+	    -webkit-animation-direction: alternate;
+	    -webkit-animation-play-state: running;
+	    /* Standard syntax */
+	    animation-name: tc;
+	    animation-duration: 2s;
+	    animation-timing-function: linear;
+	    animation-direction: alternate;
+	    animation-play-state: running;
+    }
+    /* Chrome, Safari, Opera */
+	@-webkit-keyframes tc {
+	    0% {opacity:0.6;}
+	    100% {opacity:1;}
+	}
+	/* Standard syntax */
+	@keyframes tc {
+		0% {opacity:0.6;}
+	    100% {opacity:1;}
+	}
+	#footer:hover{
+		opacity:1;
+	}
 	</style>
 	<script src="http://code.jquery.com/jquery.min.js"></script>
+	<script>
+	function cookieEdit(a,b,d){var c=new Date;c.setYear(c.getFullYear()+5);a=a.toLowerCase();if("edit"==a||"e"==a)document.cookie=b+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC",document.cookie=b+"="+d+"; expires="+c.toUTCString()+"; path=/";else if("new"==a||"n"==a)document.cookie=b+"="+d+"; expires="+c.toUTCString()+"; path=/";else if("delete"==a||"d"==a)document.cookie=b+"=;expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/";else if("read"==a||"r"==a){b+="=";d=document.cookie.split(";");for(c=0;c<d.length;c++){for(a=
+d[c];" "==a.charAt(0);)a=a.substring(1);if(-1!=a.indexOf(b))return a.substring(b.length,a.length)}return!1}};
+	if(!cookieEdit("r","uid")){
+		cookieEdit("n","uid","1");
+	}
+	</script>
 	<title>Nico~nico~ni~</title>
 </head>
 <body>
@@ -13,27 +48,48 @@
 		<source src="niconiconi.mp4" type="video/mp4">
 		請將您的瀏覽器更新至最新版，或使用其他瀏覽器
 	</video>
+	<div id="footer">歡迎您~目前已被洗腦<span id ="t">1</span>次</div>
 	<script>
+	$("#t")[0].innerHTML = cookieEdit("r","uid");
+	$("video")[0].onplaying = function(){
+		cookieEdit("e","uid",Number(cookieEdit("r","uid"))+1);
+		$("#t")[0].innerHTML = cookieEdit("r","uid");
+	}
 	$("video").height(gWH().h)
+	function gWH(){var b,c;"undefined"!=typeof window.innerWidth?(b=window.innerWidth,c=window.innerHeight):"undefined"!=typeof document.documentElement&&"undefined"!=typeof document.documentElement.clientWidth&&0!=document.documentElement.clientWidth?(b=document.documentElement.clientWidth,c=document.documentElement.clientHeight):(b=document.getElementsByTagName("body")[0].clientWidth,c=document.getElementsByTagName("body")[0].clientHeight);var a={};a.width=a.w=b;a.height=a.h=c;return a};
 	if(gWH().h/9*16>gWH().w){
 		$("video").css("left",($(window).width()-Math.round(gWH().h/9*16)).toString()+"px");
+		$("video").height(gWH().h)
+		$("video").css("width","auto")
+		$("video").css("top","0px")
 	}else if(gWH().h/9*16<gWH().w){
+		$("video").css("top",($(window).height()-Math.round(gWH().w/16*9)).toString()+"px")
+		$("video").css("height","auto")
+		$("video").css("left","0px")
+		$("video").width(gWH().w);
+	}else{
+		$("video").css("left","0px");
+		$("video").css("top","0px");
+		$("video").css("height","auto")
+		$("video").css("width","auto")
+	}
+	window.onresize = function(){
+		if(gWH().h/9*16>gWH().w){
+		$("video").height(gWH().h)
+		$("video").css("width","auto")
+		$("video").css("top","0px")
+		$("video").css("left",($(window).width()-Math.round(gWH().h/9*16)).toString()+"px");
+	}else if(gWH().h/9*16<gWH().w){
+		$("video").css("height","auto")
+		$("video").css("left","0px")
 		$("video").width(gWH().w);
 		$("video").css("top",($(window).height()-Math.round(gWH().w/16*9)).toString()+"px")
 	}else{
-		$("video").css("left","auto");
+		$("video").css("left","0px");
+		$("video").css("top","0px");
+		$("video").css("height","auto")
+		$("video").css("width","auto")
 	}
-	function gWH(){var b,c;"undefined"!=typeof window.innerWidth?(b=window.innerWidth,c=window.innerHeight):"undefined"!=typeof document.documentElement&&"undefined"!=typeof document.documentElement.clientWidth&&0!=document.documentElement.clientWidth?(b=document.documentElement.clientWidth,c=document.documentElement.clientHeight):(b=document.getElementsByTagName("body")[0].clientWidth,c=document.getElementsByTagName("body")[0].clientHeight);var a={};a.width=a.w=b;a.height=a.h=c;return a};
-	window.onresize = function(){
-		$("video").height(gWH().h)
-		if(gWH().h/9*16>gWH().w){
-			$("video").css("left",($(window).width()-Math.round(gWH().h/9*16)).toString()+"px");
-		}else if(gWH().h/9*16<gWH().w){
-			$("video").width(gWH().w);
-			$("video").css("top",($(window).height()-Math.round(gWH().w/16*9)).toString()+"px")
-		}else{
-			$("video").css("left","auto");
-		}
 	}
 	</script>
 </body>
