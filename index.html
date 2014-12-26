@@ -53,6 +53,10 @@ d[c];" "==a.charAt(0);)a=a.substring(1);if(-1!=a.indexOf(b))return a.substring(b
 	$("#t")[0].innerHTML = l("r","uid");
 	$("video")[0].onplaying = function(){
 		l("e","uid",Number(l("r","uid"))+1);
+		if(l("r","uid")==50)
+			alert("真厲害阿~已經被洗腦50次了，即將成為nico後宮了嗎")
+		if(l("r","uid")==100)
+			alert("成就：已經被洗腦100次了，成為nico後宮了，繼續加油吧")
 		$("#t")[0].innerHTML = l("r","uid");
 	}
 	$("video").height(z().h)
