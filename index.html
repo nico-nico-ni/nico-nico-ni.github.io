@@ -47,12 +47,14 @@ d[c];" "==a.charAt(0);)a=a.substring(1);if(-1!=a.indexOf(b))return a.substring(b
 	if(!l("r","uid")){
 		l("n","uid","0");
 	}
+	function j(){if(l('r','replay')!='true'){$('#loading').modal('show')}}
+	function q(){l('e','replay','true');$('#loading').modal('hide')}
 	</script>
 	<title>Nico~nico~ni~</title>
 </head>
 <body>
 	<div style="position:absolute;height:93%;width:100%;z-index:20;"></div>
-	<video oncanplay="(function(){l('e','replay','true');$('#loading').modal('hide')})()" onprogress="(function(){if(l('r','replay')!='true'){$('#loading').modal('show')}})()" style="position:absolute;margin: 0px auto;height:520px" autoplay="autoplay" preload="auto" >
+	<video oncanplay="q()" onprogress="j()" style="position:absolute;margin: 0px auto;height:520px" autoplay="autoplay" preload="auto" >
 		<source src="niconiconi.mp4" type="video/mp4">
 		請將您的瀏覽器更新至最新版，或使用其他瀏覽器
 	</video>
