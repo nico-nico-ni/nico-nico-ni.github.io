@@ -33,6 +33,8 @@
 		opacity:1;
 	}
 	</style>
+	<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	<script src="http://code.jquery.com/jquery.min.js">
 	/*! jQuery v1.11.1 | (c) 2005, 2014 jQuery Foundation, Inc. | jquery.org/license */
 	</script>
@@ -47,41 +49,58 @@ d[c];" "==a.charAt(0);)a=a.substring(1);if(-1!=a.indexOf(b))return a.substring(b
 </head>
 <body>
 	<div style="position:absolute;height:93%;width:100%;z-index:20;"></div>
-	<video style="position:absolute;margin: 0px auto;height:520px" autoplay="autoplay" loop="loop" preload="auto" >
+	<video canplay="$('#loading').modal('hide')" progress="$('#loading').modal('show')" style="position:absolute;margin: 0px auto;height:520px" autoplay="autoplay" loop="loop" preload="auto" >
 		<source src="niconiconi.mp4" type="video/mp4">
 		請將您的瀏覽器更新至最新版，或使用其他瀏覽器
 	</video>
 	<div id="footer">歡迎您~目前已被洗腦<span id ="t"></span>次</div>
 	<script>
 	$("#t")[0].innerHTML = l("r","uid");
-	$("video")[0].onplaying = function(){
+	$("video")[0].ended = function(){
 		l("e","uid",Number(l("r","uid"))+1);
 		if(l("r","uid")==50)
 			alert("真厲害阿~已經被洗腦50次了，即將成為nico後宮了嗎")
 		if(l("r","uid")==100)
 			alert("成就：已經被洗腦100次了，成為nico後宮了，繼續加油吧")
 		$("#t")[0].innerHTML = l("r","uid");
+		$("video")[0].play()
 	}
 	$("video").height(z().h)
 	function z(){var b,c;"undefined"!=typeof window.innerWidth?(b=window.innerWidth,c=window.innerHeight):"undefined"!=typeof document.documentElement&&"undefined"!=typeof document.documentElement.clientWidth&&0!=document.documentElement.clientWidth?(b=document.documentElement.clientWidth,c=document.documentElement.clientHeight):(b=document.getElementsByTagName("body")[0].clientWidth,c=document.getElementsByTagName("body")[0].clientHeight);var a={};a.width=a.w=b;a.height=a.h=c;return a};
 	(window.onresize = function(){
 		if(z().h/9*16>z().w){
-		$("video").height(z().h)
-		$("video").css("width","auto")
-		$("video").css("top","0px")
-		$("video").css("left",($(window).width()-Math.round(z().h/9*16)).toString()+"px");
-	}else if(z().h/9*16<z().w){
-		$("video").css("height","auto")
-		$("video").css("left","0px")
-		$("video").width(z().w);
-		$("video").css("top",($(window).height()-Math.round(z().w/16*9)).toString()+"px")
-	}else{
-		$("video").css("left","0px");
-		$("video").css("top","0px");
-		$("video").css("height","auto")
-		$("video").css("width","auto")
-	}
+			$("video").height(z().h)
+			$("video").css("width","auto")
+			$("video").css("top","0px")
+			$("video").css("left",($(window).width()-Math.round(z().h/9*16)).toString()+"px");
+		}else if(z().h/9*16<z().w){
+			$("video").css("height","auto")
+			$("video").css("left","0px")
+			$("video").width(z().w);
+			$("video").css("top",($(window).height()-Math.round(z().w/16*9)).toString()+"px")
+		}else{
+			$("video").css("left","0px");
+			$("video").css("top","0px");
+			$("video").css("height","auto")
+			$("video").css("width","auto")
+		}
 	})()
 	</script>
+	<div class="modal fade bs-example-modal-lg" id="loading" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  		<div class="modal-dialog modal-lg">
+    		<div class="modal-content">
+      			<div style="background-color:black;color:white;" class="modal-header">
+      				<button style="color:white;" type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      				<div class="modal-title">請稍候...</div>
+      			</div>
+      			<div style="font-family:monospace;font-size:20px" class="modal-body">
+      			請稍候...正在下載影片，可以開啟快取功能已確保下次能短時間內下載完
+      			</div>
+      			<div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">我知道了!</button>
+			    </div>
+    		</div>
+  		</div>
+	</div>
 </body>
 </html>
