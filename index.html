@@ -39,6 +39,9 @@
 	<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	<script>
+	window.onbeforeunload = function() {
+		l("d","replay")
+	}
 	function l(a,b,d){var c=new Date;c.setYear(c.getFullYear()+5);a=a.toLowerCase();if("edit"==a||"e"==a)document.cookie=b+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC",document.cookie=b+"="+d+"; expires="+c.toUTCString()+"; path=/";else if("new"==a||"n"==a)document.cookie=b+"="+d+"; expires="+c.toUTCString()+"; path=/";else if("delete"==a||"d"==a)document.cookie=b+"=;expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/";else if("read"==a||"r"==a){b+="=";d=document.cookie.split(";");for(c=0;c<d.length;c++){for(a=
 d[c];" "==a.charAt(0);)a=a.substring(1);if(-1!=a.indexOf(b))return a.substring(b.length,a.length)}return!1}};
 	if(!l("r","uid")){
@@ -49,14 +52,15 @@ d[c];" "==a.charAt(0);)a=a.substring(1);if(-1!=a.indexOf(b))return a.substring(b
 </head>
 <body>
 	<div style="position:absolute;height:93%;width:100%;z-index:20;"></div>
-	<video canplay="$('#loading').modal('hide')" progress="$('#loading').modal('show')" style="position:absolute;margin: 0px auto;height:520px" autoplay="autoplay" preload="auto" >
+	<video oncanplay="$('#loading').modal('hide')" onprogress="function(){if(l('r','replay')!='true'){$('#loading').modal('show')}}" style="position:absolute;margin: 0px auto;height:520px" autoplay="autoplay" preload="auto" >
 		<source src="niconiconi.mp4" type="video/mp4">
 		請將您的瀏覽器更新至最新版，或使用其他瀏覽器
 	</video>
 	<div id="footer">歡迎您~目前已被洗腦<span id ="t"></span>次</div>
 	<script>
+	l('e','replay',"true")
 	$("#t")[0].innerHTML = l("r","uid");
-	$("video")[0].ended = function(){
+	$("video")[0].onended = function(){
 		l("e","uid",Number(l("r","uid"))+1);
 		if(l("r","uid")==50)
 			alert("真厲害阿~已經被洗腦50次了，即將成為nico後宮了嗎")
