@@ -33,6 +33,14 @@
 	#footer:hover{
 		opacity:1;
 	}
+	#start{
+		background-color: gray;
+		height: 80%;
+		font-size: 50%;
+		position: relative;
+		top: -20%;
+		border: 0px;
+	}
 	</style>
 	<script src="http://code.jquery.com/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -60,7 +68,11 @@ d[c];" "==a.charAt(0);)a=a.substring(1);if(-1!=a.indexOf(b))return a.substring(b
 	<div id="footer">歡迎您~目前已被洗腦<span id ="t"></span>次</div>
 	<script>
 	if(navigator.userAgent.search("mobile")>-1){
-		$("#footer")[0].innerHTML += "<button onclick='$(\"video\")[0].play()'>開始洗腦!</button>"
+		$("#footer")[0].innerHTML += "<button id='start' onclick='p()'>開始洗腦!</button>"
+	}
+	function p(){
+		$("video")[0].play();
+		$("#start").css("display","none")
 	}
 	$("#t")[0].innerHTML = l("r","uid");
 	$("video")[0].onended = function(){
