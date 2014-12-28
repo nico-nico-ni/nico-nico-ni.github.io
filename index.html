@@ -59,6 +59,9 @@ d[c];" "==a.charAt(0);)a=a.substring(1);if(-1!=a.indexOf(b))return a.substring(b
 	</video>
 	<div id="footer">歡迎您~目前已被洗腦<span id ="t"></span>次</div>
 	<script>
+	if(navigator.userAgent.search("mobile")>-1){
+		$("#footer")[0].innerHTML += "<button onclick='$(\"video\")[0].play()'>開始洗腦!</button>"
+	}
 	$("#t")[0].innerHTML = l("r","uid");
 	$("video")[0].onended = function(){
 		l("e","uid",Number(l("r","uid"))+1);
