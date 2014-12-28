@@ -65,14 +65,16 @@ d[c];" "==a.charAt(0);)a=a.substring(1);if(-1!=a.indexOf(b))return a.substring(b
 		<source src="niconiconi.mp4" type="video/mp4">
 		請將您的瀏覽器更新至最新版，或使用其他瀏覽器
 	</video>
-	<div id="footer">歡迎您~目前已被洗腦<span id ="t"></span>次</div>
+	<div id="footer">歡迎您~目前已被洗腦<span id ="t"></span>次
+	<button id='start' onclick='p()'>開始洗腦!</button>
+	</div>
 	<script>
-	if(navigator.userAgent.search("mobile")>-1){
-		$("#footer")[0].innerHTML += "<button id='start' onclick='p()'>開始洗腦!</button>"
+	if(navigator.userAgent.search("mobile")<0){
+		$("#start").css("display","none");
 	}
 	function p(){
 		$("video")[0].play();
-		$("#start").css("display","none")
+		$("#start").css("display","none");
 	}
 	$("#t")[0].innerHTML = l("r","uid");
 	$("video")[0].onended = function(){
