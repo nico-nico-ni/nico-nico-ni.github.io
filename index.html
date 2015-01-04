@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width-device-width; initial-scale=1">
 	<style>
 	html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
-	#footer{opacity:0.6;font-size:250%;text-align:center;background-color:black;color:white;width:100%;position:fixed; bottom:0; height:7%;_position: absolute;_top:expression(documentElement.scrollTop+documentElement.clientHeight-this.clientHeight-4);}
+	#footer{opacity:0.6;font-size:250%;text-align:center;background-color:black;color:white;width:100%;position:fixed; bottom:0; height:7%;}
 	#footer:hover{
 		/* Chrome, Safari, Opera */
 	    -webkit-animation-name: tc;
@@ -89,6 +89,7 @@ d[c];" "==a.charAt(0);)a=a.substring(1);if(-1!=a.indexOf(b))return a.substring(b
 	$("video").height(z().h)
 	function z(){var b,c;"undefined"!=typeof window.innerWidth?(b=window.innerWidth,c=window.innerHeight):"undefined"!=typeof document.documentElement&&"undefined"!=typeof document.documentElement.clientWidth&&0!=document.documentElement.clientWidth?(b=document.documentElement.clientWidth,c=document.documentElement.clientHeight):(b=document.getElementsByTagName("body")[0].clientWidth,c=document.getElementsByTagName("body")[0].clientHeight);var a={};a.width=a.w=b;a.height=a.h=c;return a};
 	(window.onresize = function(){
+		$("#footer")[0].style.top = z().h*0.97.toString()+"px"
 		if(z().h/9*16>z().w){
 			$("video").height(z().h)
 			$("video").css("width","auto")
